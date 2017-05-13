@@ -1,11 +1,9 @@
-{% extends "base.html" %}
-{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <html>
 	<head>
 		<title>Game Result</title>
-		<link rel="stylesheet" href="{% static 'css/resultstyle.css' %}">
+		<link rel="stylesheet" href="../static/css/resultstyle.css">
 		<link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
 	</head>
 	
@@ -16,16 +14,22 @@
 					<p>Congrats!</p>
 			 		<p>You win</p> 
 					</div>
-			 		<div>
-			 			<ul>
-			 				<li>
-			 					List of Hits
-			 				</li>
-			 				<li>
-			 					List of Defence
-			 				</li>
-			 		</ul>
-
-			 	</div>
-
+			 		<div class="container">
+			 			<div class="image">
+        					<img src="../static/img/human.png" alt=""/>
+        				</div>
+        				<div class="list">
+			 				<ul>
+			 					<li>
+			 						List of Hits
+			 					</li>
+			 					<li>
+			 						List of Defence
+			 					</li>
+			 				</ul>
+						</div>
+					</div>
+				</div>
 			</div>
+	</body>
+</html>

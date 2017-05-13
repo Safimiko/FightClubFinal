@@ -13,3 +13,16 @@ li {
 	color: #694016;
 	padding: 3px;
 }
+
+.container {
+  display: flex;
+  align-content: flex-start;
+}
+
+ul {
+  margin: 0;
+}
+img {
+width: 200px;
+height: auto;
+}
