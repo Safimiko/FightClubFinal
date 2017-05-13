@@ -17,7 +17,8 @@
 	
 	{%for room in rooms %}
 	{# Переход на выбраную комнату по нажатию. #}
-		<a href="{{room.get_absolute_url}}" title="">
+		<a href="{% if room.data_end %} {{room.get_result}} {% else %}{{room.get_absolute_url}} {%endif%}" title="">
+		 
 		<div class="col-sm-3 go_to_room" data-id="{{room.id}}">
 			<div class="col-sm-12">Name room: {{room}}</div>
 			<div class="col-sm-12" >When start: {{room.data_begin}}</div>

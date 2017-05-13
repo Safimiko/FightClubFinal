@@ -1,0 +1,15 @@
+p {
+    border-bottom: 3px solid green; 
+    background-color: #e6ccb3;
+    padding: 0px;
+}
+
+body {
+	background-color:rgb(161, 247, 183);
+	font-family: 'Inknut Antiqua', serif;
+}
+
+li {
+	color: #694016;
+	padding: 3px;
+}

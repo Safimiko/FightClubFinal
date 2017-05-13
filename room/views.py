@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
 from django.views.decorators.csrf import csrf_protect
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponse,HttpResponseRedirect
 from .models import Room,Character
+from datetime import datetime
 import random
 # Create your views here.
 # Функция для перехода на шаблон комнаты
 def go_to_room(request, id=None):
     instance = get_object_or_404(Room, id=id)
+    status = True
+    if instance.data_end:
+    	status = False
     players = Character.objects.filter(room=instance)
     context = {
 		"instance": instance,
         "players": players,
+        "status": status,
 	}
     return render(request, "fight_room.html", context)
 @csrf_protect
@@ -55,12 +60,15 @@ def fight_room(request):
 	return render(request,"fight_room.html", context)
 def attack(request):
 	if request.is_ajax():
+		request.GET.get('id')
 		# Получить id от запроса
 		player_id = request.GET.get("playerId")
 		enemy_id = request.GET.get("enemyId")
+		r_id = request.GET.get("roomId")
 		# соверщить поиск в базе по id чтобы найти персонажа
 		player = Character.objects.get(id=player_id)
 		enemy = Character.objects.get(id=enemy_id)
+		room = Room.objects.get(id=r_id)
 		part_enemy = request.GET.get("partEnemy")
 		part_player = request.GET.get("partPlayer")
 		enemy.choice_target(random.randint(0,4))
@@ -72,10 +80,30 @@ def attack(request):
 		# Сохранить новые значения в базе данных
 		enemy.save()
 		player.save()
+		room.save()
+		if enemy.health<=0 or player.health<=0:
+			room.date_end=datetime.today()
+			return redirect('/'+r_id+'/result')
 		context = {
 			"healthEnemy": enemy.health,
 			"healthPlayer": player.health
 		}
 		jsresp = JsonResponse(context)
 		return HttpResponse(jsresp.content, content_type='text/html')
+def fight_result(request, id):
+	room = Room.objects.get(id)
+	players = Character.objects.filter(room=room)
+	if players[0].health < players[1].health:
+			resultstr = 'Player:'+players[1].name
+	elif players[0].health > players[1].health:
+			resultstr = 'Player:'+players[0].name
+	elif players[0].health == players[1].health:
+		resultstr = 'WinWin'
+	context = { 
+		"result":result
+	}
+	return render (request, "result.html", context)
+	
+
+
 

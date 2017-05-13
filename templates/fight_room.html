@@ -28,11 +28,17 @@
 		.clicked_player{
 			background-color: rgba(102, 153, 255,0.3)
 		}
+		.Result{
+			position:absolute;
+
+		}
+		}
 		
 
 	</style>
 {% endblock CSS%}
 {% block content %}
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-6" style="padding: 0px">
@@ -46,6 +52,7 @@
 		</div>
 	</div>
 	<div class="row">
+		<div id = "room" data-id = "{{id}}"></div>
 		<div class="col-xs-6 player_container">
 			<div class="col-xs-12 click_me_player" data-part="0"></div>
 			<div class="col-xs-4 click_me_player" data-part="2"></div>
@@ -64,8 +71,14 @@
 	<button id="fight" class="btn btn-danger">Attack</button>
 	{# Переход на страницу с комнатами #}
 	<a href="/main" title=""><button class="btn">Return to rooms</button></a>
+<div style="{% if status %} 
+	display:none 
+{% else %}
+	display:block
+{% endif %} " id = "Result">
 </div>
 {% endblock content%}
 {% block scripts %}
 <script src="{% static 'js/fight.js'%}"></script>
 {% endblock scripts %}
+

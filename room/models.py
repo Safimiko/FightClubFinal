@@ -8,7 +8,7 @@ class Room(models.Model):
 	name = models.CharField(max_length = 50)
 	game_type = models.CharField(max_length = 3, choices = GAME_TYPES) 
 	data_begin = models.DateField(auto_now = True)
-	data_end = models.DateField(blank = True,null=True)
+	data_end = models.DateField(blank = True, null=True)
 	def __str__(self):
 		return self.name
 	# функция для перехода на страницу шаблон по имени шаблона в url. 
@@ -17,6 +17,8 @@ class Room(models.Model):
 	# kwargs={"id": self.id} это передача значения как часть адреса.
 	def get_absolute_url(self):
 		return reverse("arena:in_room", kwargs={"id": self.id})	
+	def get_result(self):
+		return reverse ("arena:result", kwargs={"id": self.id})
 
 class Character(models.Model):
 	RACE = (("HM","Human"),("EL","Elf"),("OR","Orc"),("DW","Dwarf"),("WR","Werewolf"))
