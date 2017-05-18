@@ -1,35 +1,42 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <html>
 	<head>
-		<title>Game Result</title>
-		<link rel="stylesheet" href="../static/css/resultstyle.css">
-		<link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
-	</head>
-	
-	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-4" align="center">
-					<p>Congrats!</p>
-			 		<p>You win</p> 
-					</div>
-			 		<div class="container">
-			 			<div class="image">
-        					<img src="../static/img/human.png" alt=""/>
-        				</div>
-        				<div class="list">
-			 				<ul>
-			 					<li>
-			 						List of Hits
-			 					</li>
-			 					<li>
-			 						List of Defence
-			 					</li>
-			 				</ul>
+		<title>Game Result</title>-->
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{{title}}{% endblock title %}
+{% block CSS %}
+	<link rel="stylesheet" href="../static/css/resultstyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Inknut+Antiqua" rel="stylesheet">
+{% endblock CSS %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4" align="center"></div>
+			 	<div class="container">
+			 		<div class="minicontainer">
+			 			<div class="row">
+							<div class="col-xs-4">
+								<p>Congrats!<br>
+								You win!</p> 
+							</div>
 						</div>
 					</div>
+			 		<div class="image">
+        				<img src="../static/img/human.png" alt=""/>
+        			</div>
+        			<div class="list">
+			 			<ul>
+			 				<li>
+			 					List of Hits
+			 				</li>
+			 				<li>
+			 					List of Defence
+			 				</li>
+			 			</ul>
+					</div>
 				</div>
-			</div>
-	</body>
-</html>
+		</div>
+	</div>
+{% endblock content %}

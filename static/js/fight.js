@@ -18,7 +18,8 @@ $(document).ready(function(){
                 // Допонительные параметры для поиска персонажей в базе данных
                 'enemyId':$(".player_name").data('id'),
                 'playerId':$(".enemy_name").data('id'),
-                'id':$("#room").data("id")
+                'roomId':$("#room").data("id")
+
 
             },
             cache:false,
